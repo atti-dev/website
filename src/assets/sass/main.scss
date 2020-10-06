@@ -1,0 +1,43 @@
+// Utilities
+
+$utilities: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$utilities: map-merge(
+  (
+    "font-size": (
+      property: font-size,
+      class: fa,
+      values: (
+        1: 0.7rem,
+        2: 0.9rem,
+        3: 1.125rem,
+        4: 1.2rem,
+        5: 1.5rem,
+        auto: auto,
+      ),
+    ),
+    "width": (
+      property: width,
+      class: w,
+      values: (
+        10: 10%,
+        15: 15%,
+      ),
+    ),
+  ),
+  $utilities
+);
+
+@import "bootstrap";
+// @import "cropperjs";
+@import url("https://fonts.googleapis.com/css?family=ABeeZee|Bitter|Bree+Serif|Nunito&display=swap");
+
+body,
+html {
+  font-family: "ABeeZee", sans-serif;
+  background-color: #edf2f5;
+//   overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+.text-sm {
+  font-size: 15px;
+}
