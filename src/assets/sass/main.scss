@@ -12,27 +12,15 @@ $utilities: map-merge(
         3: 1.125rem,
         4: 1.2rem,
         5: 1.5rem,
-        auto: auto,
+        auto: auto
       ),
-    ),
-    "heading-size": (
-      property: font-size,
-      class: head,
-      values: (
-        1: 5rem,
-        2: 4.5rem,
-        3: 4rem,
-        4: 3.5rem,
-        5: 3rem,
-        auto: auto,
-      )
     ),
     "width": (
       property: width,
       class: w,
       values: (
         10: 10%,
-        15: 15%,
+        15: 15%
       ),
     ),
     "border-width": (
@@ -79,8 +67,15 @@ h1,h2,h3,h4,h5 {
   background-color: #8da9ba;
 }
 .text-banner {
+  font-size: 2.4rem;
   font-family: "Bree+Serif";
   text-shadow: -1px 0 #4f5c16, 0 1px #4f5c16, 1px 0 #4f5c16, 0 -1px #4f5c16;
+}
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .text-banner {
+    font-size: 4rem;
+  }
 }
 
 .footer {

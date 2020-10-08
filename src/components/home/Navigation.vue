@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg shadow-sm navbar-light bg-light py-sm-2 py-md-1"><!-- py-sm-2 py-md-0 --->
+    <nav class="navbar navbar-expand-lg shadow-sm navbar-light bg-light py-2 py-md-1"><!-- py-sm-2 py-md-0 --->
         <div class="container-fluid">
-            <router-link class="navbar-brand" to="/">
-                <img alt="ATTI logo" src="@/assets/logo.png" width="108">
+            <router-link class="navbar-brand py-0" to="/">
+                <img alt="ATTI logo" src="@/assets/logo.png" width="120">
             </router-link>
             <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
