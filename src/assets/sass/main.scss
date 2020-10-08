@@ -1,5 +1,4 @@
 // Utilities
-
 $utilities: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $utilities: map-merge(
@@ -16,6 +15,18 @@ $utilities: map-merge(
         auto: auto,
       ),
     ),
+    "heading-size": (
+      property: font-size,
+      class: head,
+      values: (
+        1: 5rem,
+        2: 4.5rem,
+        3: 4rem,
+        4: 3.5rem,
+        5: 3rem,
+        auto: auto,
+      )
+    ),
     "width": (
       property: width,
       class: w,
@@ -24,9 +35,24 @@ $utilities: map-merge(
         15: 15%,
       ),
     ),
+    "border-width": (
+      property: border-width,
+      class: border-w,
+      values: (
+        1: .05rem,
+        2: .10rem,
+        3: .25rem,
+        4: .50rem,
+        5: 1rem,
+        auto: auto
+      )
+    ),
   ),
   $utilities
 );
+
+// Modified Bootstrap Variables
+// $secondary: #ababab;
 
 @import "bootstrap";
 // @import "cropperjs";
@@ -38,6 +64,31 @@ html {
   background-color: #edf2f5;
 //   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+h1,h2,h3,h4,h5 {
+  font-family: "Bitter";
+}
+.text-head {
+  color: #354a59;
+}
 .text-sm {
   font-size: 15px;
+}
+
+// Banner
+.banner {
+  background-color: #8da9ba;
+}
+.text-banner {
+  font-family: "Bree+Serif";
+  text-shadow: -1px 0 #4f5c16, 0 1px #4f5c16, 1px 0 #4f5c16, 0 -1px #4f5c16;
+}
+
+.footer {
+  background-color: #cdcdd4;
+}
+.footer-link {
+  color: #2d2d6e;
+}
+.animate__animated.animate__fadeIn {
+  --animate-duration: 2s;
 }
