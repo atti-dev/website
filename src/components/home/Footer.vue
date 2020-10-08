@@ -33,7 +33,7 @@
         </div>
         <div class="container-xl py-3">
             <div class="row">
-                <div class="col-md-3 py-2">
+                <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Contact Information</h5>
                     <p class="my-2">
                         <span class="fa fa-4 pr-1 fa-tty"></span>
@@ -49,7 +49,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-3 py-2">
+                <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Quick Links</h5>
                     <p class="my-2">
                         <router-link :to="{ name: 'Home' }" class="text-decoration-none text-dark">Home Page</router-link>
@@ -62,7 +62,7 @@
                     </p>
                 </div>
                 
-                <div class="col-md-3 py-2">
+                <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Addresss</h5>
                     <p class="my-1">Private Bag X 11284</p>
                     <p class="my-1">16 Rothery Street</p>
@@ -70,7 +70,7 @@
                     <p class="my-1">1200</p>
                 </div>
 
-                <div class="col-md-3 py-2">
+                <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Our Social Media</h5>
                     <p class="my-2">
                         <a target="__blank" class="text-decoration-none" href="https://www.facebook.com/attinelspruit">
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 px-xl-0">
                     <p class="text-center text-dark my-3">
                         ATTI Nelspruit (PTY) Ltd is Provisionally Registered by the Department of Higher Education and Traning
                         as a Private College. Reg No: <span class="font-weight-bold">2010/FE07/058</span> until 31 December 2019.
