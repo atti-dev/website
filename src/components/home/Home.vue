@@ -3,7 +3,63 @@
 	<Banner />
 
 	<div class="container-xl">
-		<div class="row">
+		<div class="row mb-5">
+			<div class="col-md-4">
+				<h2 class="h2 my-2">Information Technology and Computers</h2>
+				<div class="d-flex mb-2">
+					<img src="@/assets/images/informationtechnology.png" class="img-fluid" alt="...">
+				</div>
+			</div>
+			<div class="col-md-8">
+				<div id="carouselExampleControls" class="carousel carousel-dark slide" data-ride="carousel">
+					<div class="carousel-inner">
+						<ol class="carousel-indicators">
+							<li data-target="#carouselExampleControls" data-slide-to="0" class="active"></li>
+							<li data-target="#carouselExampleControls" data-slide-to="1"></li>
+							<li data-target="#carouselExampleControls" data-slide-to="2"></li>
+						</ol>
+						<div class="carousel-item active" data-interval="5000">
+							<div class="d-block mb-5">
+								<h3 class="h3 my-2">End User Computing</h3>
+								<h4 class="h5 my-2 font-weight-bold">Caurse Objectives</h4>
+								<ul>
+									<li class="my-2">Competently apply the knowledge, techniques and skills of End User Computing applications in the workplace</li>
+									<li class="my-2">Understand the impact and use Information Communication and Technology (ICT) in an organisation and society</li>
+									<li class="my-2">Improve Communication by combining communication skills with End User Computing skills</li>
+									<li class="my-2">Improve the application of mathematical literacy in the workplace, by better utilising applicable applications</li>
+								</ul>
+							</div>
+						</div>
+						<div class="carousel-item" data-interval="5000">
+							<div class="d-block mb-5">
+								<h3 class="h3 my-2">Systems Development</h3>
+								<h4 class="h5 my-2 font-weight-bold">Caurse Objectives</h4>
+								<p class="my-2">
+									A qualifying learner at this level will be a well-rounded entry level Systems Developer with a good fundamental knowledge of the Information Technology field, coupled with interpersonal and business skills, preparing for later specialisation in Systems Development fields.
+								</p>
+								<p class="my-2">
+									People with this qualification have an introductory level of understanding of the computer industry concepts and/or are able to work in areas of Information Technology with little technical complexity, for example entry-level computer programming, as junior project team member.
+								</p>
+							</div>
+						</div>
+						<div class="carousel-item" data-interval="5000">
+							<div class="d-block mb-5">
+								<h3 class="h3 my-2">Systems Support</h3>
+								<h4 class="h5 my-2 font-weight-bold">Caurse Objectives</h4>
+								<p class="my-2">
+									Provide qualified learners with an undergraduate entry into the field of networking/systems support, earning credits towards tertiary offerings in the fields of Computer Studies or Computer Science
+								</p>
+								<p class="my-2">
+									A Qualifying learner at this level will be a well-rounded entry level Systems Support professional with a good fundamental knowledge of the Information Technology field, coupled with interpersonal and business skills. People with this qualification have an introductory level of understanding about computer industry concepts and/or are able to work in areas of Information Technology with little technical complexity
+								</p>
+							</div>
+						</div>
+						<!-- <div class="carousel-item" data-interval="5000">
+							<img src="@/assets/images/advertising.png" class="d-block w-100" alt="...">
+						</div> -->
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="row g-0 bg-light position-relative mb-5">
@@ -20,6 +76,9 @@
 					<li class="my-2">Fulfilling specific roles within advertising teams to meet objectives</li>
 					<li class="my-2">Selecting areas of specialisation in advertising based on assessment of own strengths and weaknesses</li>
 				</ul>
+				<p class="text-center mt-3">
+					<a href="https://diagnostic.digitalmarketinginstitute.com/auth/affiliate/ZA-ATN" class="btn text-white btn-primary" target="_blank" rel="noopener noreferrer">Digital Marketing Diagnostic</a>
+				</p>
 			</div>
 		</div>
 

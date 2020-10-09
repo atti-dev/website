@@ -6,16 +6,20 @@
                 <div class="d-block mb-3">
                     <p class="my-2">Telephone Number</p>
                     <p class="my-2 pl-2">
-                        <span class="fa fa-4 pr-1 fa-tty"></span>
-                        013 755 2638
+                        <a href="tel:013-755-2638" class="text-decoration-none text-dark">
+                            <span class="fa fa-4 pr-1 fa-tty"></span>
+                            013 755 2638
+                        </a>
                     </p>
                 </div>
                 
                 <div class="d-block mb-3">
-                    <p class="my-2">Contact Number</p>
+                    <p class="my-2">Whatsapp</p>
                     <p class="my-2 pl-2">
-                        <span class="fa fa-4 pr-1 fa-phone"></span>
-                        082 222 3563
+                        <a href="https://api.whatsapp.com/send?phone=0822223563" target="_black" class="text-decoration-none text-dark">
+                            <span class="fab fa-4 pr-1 fa-whatsapp"></span>
+                            082 222 3563
+                        </a>
                     </p>
                 </div>
                 <div class="d-block mb-3">

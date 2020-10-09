@@ -36,17 +36,23 @@
                 <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Contact Information</h5>
                     <p class="my-2">
-                        <span class="fa fa-4 pr-1 fa-tty"></span>
-                        013 755 2638
+                        <a href="tel:013-755-2638" class="text-decoration-none">
+                            <span class="fa fa-4 pr-1 fa-tty"></span>
+                            013 755 2638
+                        </a>
                     </p>
                     <p class="my-2">
-                        <span class="fa fa-4 pr-1 fa-phone"></span>
-                        082 222 3563
+                        <a href="https://api.whatsapp.com/send?phone=0822223563" target="__black" class="text-decoration-none">
+                            <span class="fab fa-4 pr-1 fa-whatsapp"></span>
+                            082 222 3563
+                        </a>
                     </p>
-                    <a class="text-decoration-none" href="mailto:nicolette@atti.co.za">
-                        <span class="fa fa-4 pr-1 fa-envelope"></span>
-                        nicolette@atti.co.za
-                    </a>
+                    <p class="my-2">
+                        <a class="text-decoration-none" href="mailto:nicolette@atti.co.za">
+                            <span class="fa fa-4 pr-1 fa-envelope"></span>
+                            nicolette@atti.co.za
+                        </a>
+                    </p>
                 </div>
 
                 <div class="col-6 col-md-3 py-2">
@@ -73,13 +79,13 @@
                 <div class="col-6 col-md-3 py-2">
                     <h5 class="font-weight-bold my-1">Our Social Media</h5>
                     <p class="my-2">
-                        <a target="__blank" class="text-decoration-none" href="https://www.facebook.com/attinelspruit">
+                        <a target="_blank" class="text-decoration-none" href="https://www.facebook.com/attinelspruit">
                             <span class="fab fa-4 pr-1 fa-facebook"></span>
                             ATTI Nelspruit
                         </a>
                     </p>
                     <p class="my-2">
-                        <a target="__blank" class="text-decoration-none" href="https://twitter.com/attinelspruit?ref_src=twsrc%5Etfw">
+                        <a target="_blank" class="text-decoration-none" href="https://twitter.com/attinelspruit?ref_src=twsrc%5Etfw">
                             <span class="fab fa-4 pr-1 fa-twitter"></span>
                             @ATTINelspruit
                         </a>
