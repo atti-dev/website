@@ -68,7 +68,8 @@
                                 <span class="fa fa-paper-plane pl-1"></span>
                             </button>
                         </form>
-                        <p class="card-text text-danger mt-4 mb-2 text-center">{{ contactForm.error }}</p>
+                        <p class="card-text text-danger mt-4 mb-2 text-center" v-if="contactForm.error">{{ contactForm.error }}</p>
+                        <p class="card-text text-success font-weight-bold mt-4 mb-2 text-center" v-if="contactForm.success">{{ contactForm.success }}</p>
                     </div>
                 </div>
             </div>
@@ -85,6 +86,7 @@
     import Footer from '@/components/home/Footer.vue'
     // import Location from './Location.vue'
     import { reactive } from 'vue'
+    import axios from 'axios'
     export default {
         components: { Footer },
         setup() {
@@ -93,45 +95,33 @@
                 email: '',
                 phone: '',
                 message: '',
-                error: ''
+                error: '',
+                success: ''
             })
 
             function sendMessage() {
-                const contactFormIsValid  = validation()
-                if (contactFormIsValid) {
-                    console.log(contactForm)
-                    alert('Message Sent')
-                }
-            }
+                const formData = new FormData
+                formData.append('fullname', contactForm.name)
+                formData.append('email', contactForm.email)
+                formData.append('contact_number', contactForm.phone)
+                formData.append('message', contactForm.message)
 
-            const validation = ()=> {
-                if (contactForm.name.length < 3) {
-                    contactForm.error = "The name field is invalid. Please enter your Fullname"
-                    return false
-                }
-
-                if (contactForm.email && !validateEmail(contactForm.email)) {
-                    contactForm.error = "The email you have enter is invalid"
-                    return false
-                }
-
-                if (contactForm.phone.length < 9 || contactForm.phone.length > 10) {
-                    contactForm.error = "Please enter a valid phone number"
-                    return false
-                }
-
-                if (contactForm.message.length < 10) {
-                    contactForm.error = "Sorry! the massage can not be less than 10 char"
-                    return false
-                }
-
-                contactForm.error = ''
-                return true
-            }
-
-            function validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-                return re.test(String(email).toLowerCase());
+                const config = {headers: { 'Content-Type': 'multipart/form-data' }}
+                const send =  axios.post('http://localhost:8000/api/contact', formData, config)
+                send.then(response => {
+                    if (response.status == 200 || response.status == 201) {
+                        contactForm.name = ''
+                        contactForm.email = ''
+                        contactForm.phone = ''
+                        contactForm.message = ''
+                        contactForm.error = ''
+                        contactForm.success = response.data.message
+                        console.log(contactForm)
+                    }
+                    else {
+                        contactForm.error = response.data.message
+                    }
+                })
             }
 
             return { sendMessage, contactForm }
