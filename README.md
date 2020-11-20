@@ -1,4 +1,4 @@
-# ATTI website
+# <center>ATTI website <center/>
 
 ATTI website is made for people who are lookin for skills training. you can browse all the courses that are available in ATTI and apply for course of your choosing with all the information required for an application. ATTI admin can download student registration form as a PDF file
 
@@ -17,12 +17,17 @@ npm run lint
 cd public
 composer.phar intall
 php -S localhost:8000
-cd api
-composer.phar install --no-dev --optimize-autoloader
 
 ```
+## Project Production Setup
+### PHP back-end API
+```
+cd api
+composer.phar install --no-dev --optimize-autoloader
+```
 
-Developer: Shabangu Thabiso
+### Author
+Developer: Shabangu Thabiso <br />
 Email: shabanguthabiso02@gmail.com
 
 ### For Vue.js Customize configuration
