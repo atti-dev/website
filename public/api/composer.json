@@ -1,0 +1,16 @@
+{
+    "name": "anestordev/api",
+    "description": "This is an API For anestordev.com",
+    "type": "project",
+    "require": {
+        "setasign/fpdf": "1.8",
+        "pecee/simple-router": "4.2.0.6"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thabiso Shabangu",
+            "email": "thabisos@atticoza.onmicrosoft.com"
+        }
+    ]
+}

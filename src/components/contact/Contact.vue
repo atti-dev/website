@@ -46,22 +46,22 @@
                         <form action="#" method="post" @submit.prevent="sendMessage">
                             <div class="mb-3 mb-lg-4">
                                 <label for="contactName" class="form-label">Name</label>
-                                <input v-model="contactForm.name" type="text" class="form-control" id="contactName" placeholder="eg: John Doe">
+                                <input v-model="contactForm.name" type="text" class="form-control ip-1 bg-light border-0" id="contactName" placeholder="eg: John Doe">
                             </div>
                             <div class="mb-3 mb-lg-4">
                                 <label for="conatactEmail" class="form-label">Email - optional</label>
-                                <input v-model="contactForm.email" type="email" class="form-control" id="conatactEmail" placeholder="eg: johndoe@example.com">
+                                <input v-model="contactForm.email" type="email" class="form-control ip-1 bg-light border-0" id="conatactEmail" placeholder="eg: johndoe@example.com">
                             </div>
                             <div class="mb-3 mb-lg-4">
                                 <label for="contactNumber" class="form-label">Phone Number</label>
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text bg-light border-right-0" id="basic-addon1">+27</span>
-                                    <input v-model="contactForm.phone" type="text" class="form-control border-left-0" aria-describedby="basic-addon1" id="contactNumber" placeholder="71 222 3333">
+                                    <span class="input-group-text ip-1 bg-light border-0" id="basic-addon1">+27</span>
+                                    <input v-model="contactForm.phone" type="text" class="form-control ip-1 bg-light border-0" aria-describedby="basic-addon1" id="contactNumber" placeholder="71 222 3333">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="contactMessage" class="form-label">Meassage</label>
-                                <textarea v-model="contactForm.message" class="form-control" id="contactMessage" rows="5" placeholder="eg: Hello, how are you..."></textarea>
+                                <textarea v-model="contactForm.message" class="form-control ip-1 bg-light border-0" id="contactMessage" rows="5" placeholder="eg: Hello, how are you..."></textarea>
                             </div>
                             <button type="submit" class="btn btn-success">
                                 Send Message
@@ -83,48 +83,47 @@
     <Footer />
 </template>
 <script>
-    import Footer from '@/components/home/Footer.vue'
-    // import Location from './Location.vue'
-    import { reactive } from 'vue'
-    import axios from 'axios'
-    export default {
-        components: { Footer },
-        setup() {
-            const contactForm = reactive({
-                name: '',
-                email: '',
-                phone: '',
-                message: '',
-                error: '',
-                success: ''
+import Footer from '@/components/home/Footer.vue'
+// import Location from './Location.vue'
+import { reactive } from 'vue'
+import axios from 'axios'
+import { useStore } from 'vuex'
+export default {
+    components: { Footer },
+    setup() {
+        const store = useStore()
+        const contactForm = reactive({
+            name: '',
+            email: '',
+            phone: '',
+            message: '',
+            error: '',
+            success: ''
+        })
+
+        function sendMessage() {
+            const formData = new FormData
+            formData.append('fullname', contactForm.name)
+            formData.append('email', contactForm.email)
+            formData.append('contact_number', contactForm.phone)
+            formData.append('message', contactForm.message)
+
+            const config = {headers: { 'Content-Type': 'multipart/form-data' }}
+            axios.post(`${store.state.baseAPI_URL}api/contact`, formData, config)
+            .then(response => {
+                if (response.status == 203) {
+                    return contactForm.error = response.data.message
+                }
+                contactForm.name = ''
+                contactForm.email = ''
+                contactForm.phone = ''
+                contactForm.message = ''
+                contactForm.error = ''
+                contactForm.success = response.data.message
             })
-
-            function sendMessage() {
-                const formData = new FormData
-                formData.append('fullname', contactForm.name)
-                formData.append('email', contactForm.email)
-                formData.append('contact_number', contactForm.phone)
-                formData.append('message', contactForm.message)
-
-                const config = {headers: { 'Content-Type': 'multipart/form-data' }}
-                const send =  axios.post('http://localhost:8000/api/contact', formData, config)
-                send.then(response => {
-                    if (response.status == 200 || response.status == 201) {
-                        contactForm.name = ''
-                        contactForm.email = ''
-                        contactForm.phone = ''
-                        contactForm.message = ''
-                        contactForm.error = ''
-                        contactForm.success = response.data.message
-                        console.log(contactForm)
-                    }
-                    else {
-                        contactForm.error = response.data.message
-                    }
-                })
-            }
-
-            return { sendMessage, contactForm }
         }
+
+        return { sendMessage, contactForm }
     }
+}
 </script>

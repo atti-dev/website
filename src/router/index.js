@@ -7,6 +7,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "home" */ '@/components/home/Home.vue')
   },
   {
+    path: '/courses',
+    name: 'Courses',
+    component: () => import(/* webpackChunkName: "courses" */ '@/components/courses/Courses.vue')
+  },
+  {
+    path: '/courses/:course_id',
+    name: 'ShowCourse',
+    component: () => import(/* webpackChunkName: "courses" */ '@/components/courses/ShowCourse.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import(/* webpackChunkName: "about" */ '@/components/about/About.vue')
@@ -17,9 +27,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "contact" */ '@/components/contact/Contact.vue')
   },
   {
-    path: '/registration',
-    name: 'Registration',
-    component: () => import(/* webpackChunkName: "registration" */ '@/components/registration/Registration.vue')
+    path: '/enrolment/apply',
+    name: 'EnrollCourse',
+    component: () => import(/* webpackChunkName: "applicationform" */ '@/components/enroll/ApplicationForm.vue')
+  },
+  {
+    path: '/enrolment/:id_number/:course_id',
+    name: 'EnrolmentForm',
+    component: () => import(/* webpackChunkName: "enrolmentform" */ '@/components/enroll/EnrolmentForm.vue')
+  },
+  {
+    path: '/enrolment/update/:id_number',
+    name: 'EnrolmentFormP2',
+    component: () => import(/* webpackChunkName: "enrolmenteormpage2" */ '@/components/enroll/EnrolmentFormP2.vue')
   }
 ]
 

@@ -27,12 +27,24 @@ $utilities: map-merge(
       property: border-width,
       class: border-w,
       values: (
+        0: 0,
         1: .05rem,
         2: .10rem,
-        3: .25rem,
-        4: .50rem,
-        5: 1rem,
+        3: .15rem,
+        4: .30rem,
+        5: .80rem,
         auto: auto
+      )
+    ),
+    "input-padding": (
+      property: padding,
+      class: ip,
+      values: (
+        1: 10px,
+        2: 11px,
+        3: 12px,
+        4: 13px,
+        5: 14px,
       )
     ),
   ),
@@ -41,6 +53,10 @@ $utilities: map-merge(
 
 // Modified Bootstrap Variables
 // $secondary: #ababab;
+$body-bg: #edf2f5;
+$body-color: #737373;
+$dark: #5e5e5e;
+
 
 @import "bootstrap";
 // @import "cropperjs";
@@ -49,9 +65,20 @@ $utilities: map-merge(
 body,
 html {
   font-family: "ABeeZee", sans-serif;
-  background-color: #edf2f5;
 //   overflow-x: hidden; /* Prevent scroll on narrow devices */
 }
+
+.bg-navbar {
+  background-color: #203a4a;
+}
+.search {
+  background-color: #ededed;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
 h1,h2,h3,h4,h5 {
   font-family: "Bitter";
 }
@@ -61,29 +88,34 @@ h1,h2,h3,h4,h5 {
 .text-sm {
   font-size: 15px;
 }
-
+.bg-brand {
+  background-color: #5a5f7d;
+}
 // Banner
+$bg-banner: #254a61;
 .banner {
-  background-color: #8da9ba;
+  background-color: $bg-banner;
 }
 .text-banner {
   font-size: 2.4rem;
   font-family: "Bree+Serif";
-  text-shadow: -1px 0 #4f5c16, 0 1px #4f5c16, 1px 0 #4f5c16, 0 -1px #4f5c16;
+  background-color: #466d85;
+  color: #e2e2e2;
+  text-shadow: -1px 0 #cecece, 0 1px #cecece, 1px 0 #cecece, 0 -1px #cecece;
 }
 // Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .text-banner {
     font-size: 4rem;
   }
 }
 
 .footer {
-  background-color: #cdcdd4;
+  background-color: #152936;
 }
 .footer-link {
   color: #2d2d6e;
 }
-.animate__animated.animate__fadeIn {
-  --animate-duration: 2s;
+.footer-text {
+  color: #bebebe;
 }
