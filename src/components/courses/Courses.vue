@@ -115,7 +115,12 @@ export default {
 			axios.get(`${ store.state.baseAPI_URL }api/search?search=${ search.input }`)
 			.then(response => {
 				if (response.status == 203) {
-					return search.errorMessage = response.data.message
+					const notify = {
+						title: 'Course Search',
+						message: response.data.message,
+						success: false,
+					}
+					store.dispatch('notify', notify)
 				}
 				courses.length = 0
 				response.data.forEach(data => {

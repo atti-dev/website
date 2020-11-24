@@ -58,6 +58,7 @@ $body-color: #737373;
 $dark: #5e5e5e;
 
 
+
 @import "bootstrap";
 // @import "cropperjs";
 @import url("https://fonts.googleapis.com/css?family=ABeeZee|Bitter|Bree+Serif|Nunito&display=swap");
@@ -66,6 +67,13 @@ body,
 html {
   font-family: "ABeeZee", sans-serif;
 //   overflow-x: hidden; /* Prevent scroll on narrow devices */
+}
+#notifications {
+  z-index: $zindex-popover;
+  min-width: 200px;
+}
+.notification {
+  min-width: 400px;
 }
 
 .bg-navbar {

@@ -119,7 +119,12 @@ export default {
                 contactForm.phone = ''
                 contactForm.message = ''
                 contactForm.error = ''
-                contactForm.success = response.data.message
+                const notify = {
+                    title: 'Contact Us',
+                    message: response.data.message,
+                    success: true,
+                }
+                store.dispatch('notify', notify)
             })
         }
 

@@ -70,26 +70,29 @@
                                     <input v-model="data.qualification.name" type="text" class="form-control border-0 bg-light ip-1" id="qualification" placeholder="eg: Systems Development NQF Level 5">
                                 </div>
                                 <div class="col-6 col-md-3 mb-2">
-                                    <div class="card border-0 bg-light pointer h-100">
+                                    <div class="card border-w-2  bg-light pointer h-100" :class="{ 'border-success': data.qualification.document, 'border-light': !data.qualification.document }">
                                         <div class="card-body" @click="chooseQualification">
                                             <p class="card-text text-center my-1 font-weight-bold">Choose Document</p>
                                             <p class="card-text text-center my-1 text-sm">Highest Qualification</p>
+                                            <p v-if="data.qualification.document" class="card-text text-success text-center my-1 text-sm">{{ data.qualification.document }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3 mb-2">
-                                    <div class="card border-0 bg-light pointer h-100">
-                                        <div class="card-body" @click="chooseQualification">
+                                    <div class="card border-w-2  bg-light pointer h-100" :class="{ 'border-success': data.id_copy, 'border-light': !data.id_copy }">
+                                        <div class="card-body" @click="chooseIdCopy">
                                             <p class="card-text text-center my-1 font-weight-bold">Choose Document</p>
                                             <p class="card-text text-center my-1 text-sm">Copy of I.D</p>
+                                            <p v-if="data.id_copy" class="card-text text-success text-center my-1 text-sm">{{ data.id_copy }}</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-3 mb-2" v-if="data.foreign">
-                                    <div class="card border-0 bg-light pointer h-100">
-                                        <div class="card-body" @click="chooseQualification">
+                                    <div class="card border-w-2  bg-light pointer h-100" :class="{ 'border-success': data.permit, 'border-light': !data.permit }">
+                                        <div class="card-body" @click="choosePermit">
                                             <p class="card-text text-center my-1 font-weight-bold">Choose Document</p>
                                             <p class="card-text text-center my-1 text-sm">Copy of Study Permit</p>
+                                            <p v-if="data.permit" class="card-text text-success text-center my-1 text-sm">{{ data.permit }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -226,6 +229,12 @@ export default {
             axios.post(`${ store.state.baseAPI_URL }api/register`, formData, config)
             .then(response => {
                 if (response.status != 203) {
+                    const notify = {
+                    title: 'Enrolment Form',
+                    message: response.data.message,
+                    success: true,
+                }
+                store.dispatch('notify', notify)
                     return router.push({
                         name: 'EnrolmentFormP2',
                         params: { 
@@ -235,6 +244,12 @@ export default {
                 }
                 control.loading = false
                 control.errorMessage = response.data.message
+                const notify = {
+                    title: 'Enrolment Form',
+                    message: response.data.message,
+                    success: false,
+                }
+                store.dispatch('notify', notify)
             })
         }
         
@@ -245,20 +260,95 @@ export default {
             input.addEventListener('change', (event)=> {
                 const file = event.target.files[0]
                 const formData = new FormData
-                formData.append('HQ_doc', file)
+                formData.append('document', 'qualification_'+ data.id_number)
+                formData.append('pdf_file', file)
                 const config = { headers: { 'Content-Type': 'multipart/form-data' }}
                 const upload =  axios.post(`${ store.state.baseAPI_URL }api/upload`, formData, config)
                 upload.then(response => {
-                    console.log(response)
+                    if (response.status == 200) {
+                        data.qualification.document = response.data.url
+                        const notify = {
+                            title: 'File Upload',
+                            message: response.data.message,
+                            success: true,
+                        }
+                        store.dispatch('notify', notify)
+                    }
+                    else {
+                        const notify = {
+                            title: 'File Upload Error',
+                            message: response.data.message,
+                            success: false,
+                        }
+                        store.dispatch('notify', notify)
+                    }
                 })
             })
         }
         
         function chooseIdCopy() {
-            console.log("Choose ID Copy")
+            const input = document.createElement('input');
+            input.setAttribute("type", "file");
+            input.click()
+            input.addEventListener('change', (event)=> {
+                const file = event.target.files[0]
+                const formData = new FormData
+                formData.append('document', 'idcopy_'+ data.id_number)
+                formData.append('pdf_file', file)
+                const config = { headers: { 'Content-Type': 'multipart/form-data' }}
+                const upload =  axios.post(`${ store.state.baseAPI_URL }api/upload`, formData, config)
+                upload.then(response => {
+                    if (response.status == 200) {
+                        data.id_copy = response.data.url
+                        const notify = {
+                            title: 'File Upload',
+                            message: response.data.message,
+                            success: true,
+                        }
+                        store.dispatch('notify', notify)
+                    }
+                    else {
+                        const notify = {
+                            title: 'File Upload',
+                            message: response.data.message,
+                            success: false,
+                        }
+                        store.dispatch('notify', notify)
+                    }
+                })
+            })
         }
         function choosePermit() {
-            console.log("Choose Permit")
+            const input = document.createElement('input');
+            input.setAttribute("type", "file");
+            input.click()
+            input.addEventListener('change', (event)=> {
+                const file = event.target.files[0]
+                const formData = new FormData
+                formData.append('document', 'permit_'+ data.id_number)
+                formData.append('pdf_file', file)
+                const config = { headers: { 'Content-Type': 'multipart/form-data' }}
+                const upload =  axios.post(`${ store.state.baseAPI_URL }api/upload`, formData, config)
+                upload.then(response => {
+                    if (response.status == 200) {
+                        data.permit = response.data.url
+                        const notify = {
+                            title: 'File Upload',
+                            message: response.data.message,
+                            success: true,
+                        }
+                        store.dispatch('notify', notify)
+                    }
+                    else {
+                        const notify = {
+                            title: 'File Upload',
+                            message: response.data.message,
+                            success: false,
+                        }
+                        store.dispatch('notify', notify)
+                    }
+                })
+            })
         }
 
         return {

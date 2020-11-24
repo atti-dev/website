@@ -1,4 +1,4 @@
-# <center>ATTI website <center/>
+# ATTI website
 
 ATTI website is made for people who are lookin for skills training. you can browse all the courses that are available in ATTI and apply for course of your choosing with all the information required for an application. ATTI admin can download student registration form as a PDF file
 

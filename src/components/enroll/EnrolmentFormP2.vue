@@ -210,12 +210,24 @@ export default {
             axios.post(`${ store.state.baseAPI_URL }api/register/${route.params.id_number}`, formData, config)
             .then(response => {
                 if (response.status != 203) {
+                    const notify = {
+                        title: 'Enrolment Form',
+                        message: response.data.message,
+                        success: true,
+                    }
+                    store.dispatch('notify', notify)
                     return router.push({
                         name: 'Home',
                     })
                 }
                 control.loading = false
                 control.errorMessage = response.data.message
+                const notify = {
+                    title: 'Enrolment Form',
+                    message: response.data.message,
+                    success: false,
+                }
+                store.dispatch('notify', notify)
             })
         }
 
