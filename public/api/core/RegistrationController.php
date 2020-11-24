@@ -26,8 +26,8 @@ class RegistrationController
                         postal_city,
                         postal_code,
                         qualification_name,
-                        -- qualification_doc,
-                        -- id_copy,
+                        qualification_doc,
+                        id_copy,
                         is_foreign,
                         guardian_firstname,
                         guardian_lastname,
@@ -48,8 +48,8 @@ class RegistrationController
                         :postal_city,
                         :postal_code,
                         :qualification_name,
-                        -- :qualification_doc,
-                        -- :id_copy,
+                        :qualification_doc,
+                        :id_copy,
                         :is_foreign,
                         :guardian_firstname,
                         :guardian_lastname,
@@ -70,8 +70,8 @@ class RegistrationController
                     ':postal_city' => $_POST['postal_city'],
                     ':postal_code' => $_POST['postal_code'],
                     ':qualification_name' => $_POST['qualification_name'],
-                    // ':qualification_doc' => $_POST['qualification_doc'],
-                    // ':id_copy' => $_POST['id_copy'],
+                    ':qualification_doc' => $_POST['qualification_doc'],
+                    ':id_copy' => $_POST['id_copy'],
                     ':is_foreign' => $_POST['is_foreign'],
                     ':guardian_firstname' => $_POST['guardian_firstname'],
                     ':guardian_lastname' => $_POST['guardian_lastname'],
@@ -100,8 +100,8 @@ class RegistrationController
             empty($data['home_city']) ||
             empty($data['home_code']) ||
             empty($data['qualification_name']) ||
-            // empty($data['qualification_doc']) ||
-            // empty($data['id_copy']) ||
+            empty($data['qualification_doc']) ||
+            empty($data['id_copy']) ||
             empty($data['is_foreign']) ||
             empty($data['guardian_firstname']) ||
             empty($data['guardian_lastname']) ||
@@ -227,5 +227,47 @@ class RegistrationController
         }
         
         return true;
+    }
+
+    // Upload Student Document ID, Qualification and Permit if Foreign
+    public function fileUpload()
+    {
+        if (isset($_FILES['pdf_file']))
+        {
+            $file_name = $_FILES['pdf_file']['name'];
+            $file_size = $_FILES['pdf_file']['size'];
+            $file_tmp = $_FILES['pdf_file']['tmp_name'];
+            $file_type = $_FILES['pdf_file']['type'];
+
+            // $file_extention = strtolower(end(explode('.',$_FILES['pdf_file']['name'])));
+            $extract_extention = explode('.',strtolower($_FILES['pdf_file']['name']));
+            $index = count($extract_extention) - 1;
+            $file_extention = $extract_extention[$index];
+            $allowed= array("application/pdf", 'pdf');
+        
+            if(!in_array($file_extention, $allowed)){
+                echo json_encode(['message' => 'extension not allowed, please choose a PDF file']);
+                http_response_code(203);
+            }
+            else 
+            {
+                if($file_size > 2097152) {
+                    echo json_encode(['message' => 'File size must be less than 2MB']);
+                    http_response_code(203);
+                }
+                else {
+                    move_uploaded_file($file_tmp, "uploads/".$_POST['document'].'.'.$file_extention);
+                    echo json_encode([
+                        'message' => 'File Upload Success',
+                        'url' => "uploads/".$_POST['document'].'.'.$file_extention
+                    ]);
+                    http_response_code(200);
+                }
+            }
+        }
+        else {
+            echo json_encode(['message' => 'Sorry Something went wrong when uploading file']);
+            http_response_code(203);
+        }        
     }
 }

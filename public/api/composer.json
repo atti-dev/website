@@ -1,6 +1,6 @@
 {
-    "name": "anestordev/api",
-    "description": "This is an API For anestordev.com",
+    "name": "atti/api",
+    "description": "This is an API For attinelspruit.co.za",
     "type": "project",
     "require": {
         "setasign/fpdf": "1.8",

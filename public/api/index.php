@@ -31,6 +31,7 @@ Router::get('/api/download/applications/{id}', 'ApplicationController@download')
 
 Router::post('/api/register', 'RegistrationController@create');
 Router::post('/api/register/{id_number}', 'RegistrationController@update');
+Router::post('/api/upload', 'RegistrationController@fileUpload');
 
 Router::post('/api/contact', 'ContactController@create');
 
