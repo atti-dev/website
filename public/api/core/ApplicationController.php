@@ -81,8 +81,8 @@ class ApplicationController
                 http_response_code(203);
             }
             else {
-                $query = "INSERT INTO applications (course_id, firstname, lastname, id_number, contact_number, email, pending, accepted)
-                        VALUES(:course_id, :firstname, :lastname, :id_number, :contact_number, :email, :pending, :accepted)";
+                $query = "INSERT INTO applications (course_id, firstname, lastname, id_number, contact_number, email)
+                        VALUES(:course_id, :firstname, :lastname, :id_number, :contact_number, :email)";
                 $params = [
                     ':course_id' => $_POST['course_id'],
                     ':firstname' => $_POST['firstname'],
@@ -90,8 +90,6 @@ class ApplicationController
                     ':id_number' => $_POST['id_number'],
                     ':email' => $_POST['email'],
                     ':contact_number' => $_POST['contact_number'],
-                    ':pending' => true,
-                    ':accepted' => false
                 ];
                 // var_dump($params);
                 DB::query($query, $params);

@@ -29,6 +29,7 @@ class RegistrationController
                         qualification_doc,
                         id_copy,
                         is_foreign,
+                        permit,
                         guardian_firstname,
                         guardian_lastname,
                         guardian_relation,
@@ -51,12 +52,14 @@ class RegistrationController
                         :qualification_doc,
                         :id_copy,
                         :is_foreign,
+                        :permit,
                         :guardian_firstname,
                         :guardian_lastname,
                         :guardian_relation,
                         :guardian_contact
                     )";
                 // Params
+                $is_foreign_student = $_POST['is_foreign'] == true? 1 : 0;
                 $params = [
                     ':firstname' => $_POST['firstname'],
                     ':lastname' => $_POST['lastname'],
@@ -72,7 +75,8 @@ class RegistrationController
                     ':qualification_name' => $_POST['qualification_name'],
                     ':qualification_doc' => $_POST['qualification_doc'],
                     ':id_copy' => $_POST['id_copy'],
-                    ':is_foreign' => $_POST['is_foreign'],
+                    ':is_foreign' => $is_foreign_student,
+                    ':permit' => $_POST['permit'],
                     ':guardian_firstname' => $_POST['guardian_firstname'],
                     ':guardian_lastname' => $_POST['guardian_lastname'],
                     ':guardian_relation' => $_POST['guardian_relation'],
@@ -144,7 +148,8 @@ class RegistrationController
             http_response_code(203);
         }
         else {
-            $query =  "UPDATE registrations SET 
+            $query =  "UPDATE registrations SET
+                company_name = :company_name,
                 company_initials = :company_initials,
                 company_lastname = :company_lastname,
                 company_position = :company_position,
@@ -165,7 +170,9 @@ class RegistrationController
                 medical_illness_description = :medical_illness_description
             WHERE id_number=$id_number";
             // Dynamic Parameters
+            $is_medical_illness = $_POST['medical_illness'] == true? 1 : 0;
             $params = [
+                ':company_name' => $_POST['company_name'],
                 ':company_initials' => $_POST['company_initials'],
                 ':company_lastname' => $_POST['company_lastname'],
                 ':company_position' => $_POST['company_position'],
@@ -182,11 +189,11 @@ class RegistrationController
                 ':medical_aid_scheme' => $_POST['medical_aid_scheme'],
                 ':medical_member_number' => $_POST['medical_member_number'],
                 ':medical_telephone' => $_POST['medical_telephone'],
-                ':medical_illness' => $_POST['medical_illness'],
+                ':medical_illness' => $is_medical_illness,
                 ':medical_illness_description' => $_POST['medical_illness_description']
             ];
             DB::query($query, $params);
-            echo json_encode(["message" => "Student Updated Successfuly!"]);
+            echo json_encode(["message" => "New Student Info Updated Successfuly!"]);
             http_response_code(200);
         }
     }
@@ -195,6 +202,7 @@ class RegistrationController
     {
         if ($data['company_initials'] || $data['company_lastname'] || $data['company_position']) {
             if (
+                empty($data['company_name']) ||
                 empty($data['company_initials']) ||
                 empty($data['company_lastname']) ||
                 empty($data['company_position']) ||
