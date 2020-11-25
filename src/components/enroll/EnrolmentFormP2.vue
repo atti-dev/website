@@ -13,6 +13,12 @@
                                 <h3 class="h4 my-3 font-weight-bold">Company Information</h3>
                             </div>
                             <div class="row mb-3">
+                                <div class="col-12 mb-3">
+                                    <label for="cinitname" class="form-label">Company Name</label>
+                                    <input v-model="data.company_name" type="text" class="form-control border-0 bg-light ip-1" id="cinitname" placeholder="eg: Company Name">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <div class="col-md-6 mb-3">
                                     <label for="cinitials" class="form-label">Initials</label>
                                     <input v-model="data.company_initials" type="text" class="form-control border-0 bg-light ip-1" id="cinitials" placeholder="eg: Mr A.B">
@@ -157,6 +163,7 @@ export default {
             errorMessage: ''
         })
         const data = reactive({
+            company_name: '',
             company_initials: '',
             company_lastname: '',
             company_position: '',
@@ -187,6 +194,7 @@ export default {
             control.loading = true
             control.errorMessage = ''
             const formData = new FormData
+            formData.append('company_name', data.company_name)
             formData.append('company_initials', data.company_initials)
             formData.append('company_lastname', data.company_lastname)
             formData.append('company_position', data.company_position)
