@@ -6,11 +6,6 @@
         "setasign/fpdf": "1.8",
         "pecee/simple-router": "4.2.0.6"
     },
-    "scripts": {
-        "production": [
-            "composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader"
-        ]
-    },
     "license": "MIT",
     "authors": [
         {
